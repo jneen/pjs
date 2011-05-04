@@ -1,10 +1,10 @@
-var Limbo = (function(slice, prototype) {
+var Limbo = (function(slice, prototype, undefined) {
   function isObject(o) { return o && typeof o === 'object'; }
   function isFunction(f) { return f && typeof f === 'function'; }
   function Limbo(_superclass, definition) {
     function Noop() {}
 
-    if (typeof definition === 'undefined') {
+    if (definition === undefined) {
       definition = _superclass;
       _superclass = Object;
     }
