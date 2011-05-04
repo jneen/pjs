@@ -1,4 +1,4 @@
-var Limbo = module.exports = (function(slice) {
+var Limbo = (function(slice) {
   function Limbo(_superclass, definition) {
     function Noop() {}
 
