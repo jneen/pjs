@@ -1,5 +1,4 @@
-var Limbo = module.exports = (function() {
-  var slice = [].slice;
+var Limbo = module.exports = (function(slice) {
   function Limbo(_superclass, definition) {
     function Noop() {}
 
@@ -16,8 +15,10 @@ var Limbo = module.exports = (function() {
       , extensions = {}
     ;
 
+    proto.constructor = Noop;
+
     if (typeof definition === 'function') {
-      extensions = definition(proto, Noop, _super, _superclass);
+      extensions = definition.call(Noop, proto, _super, Noop, _superclass);
     }
     else if (definition && typeof definition === 'object') {
       extensions = definition;
@@ -44,6 +45,5 @@ var Limbo = module.exports = (function() {
     return obj;
   };
 
-
   return Limbo;
-})();
+})([].slice);
