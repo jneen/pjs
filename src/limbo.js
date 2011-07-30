@@ -1,4 +1,4 @@
-var Limbo = (function(slice, prototype, undefined) {
+var Limbo = (function(slice, prototype, hasOwnProperty, undefined) {
   function isObject(o) { return o && typeof o === 'object'; }
   function isFunction(f) { return f && typeof f === 'function'; }
   function Limbo(_superclass, definition) {
@@ -28,7 +28,7 @@ var Limbo = (function(slice, prototype, undefined) {
 
     if (isObject(extensions)) {
       for (var ext in extensions) {
-        if (extensions.hasOwnProperty(ext)) {
+        if (hasOwnProperty.call(extensions, ext)) {
           proto[ext] = extensions[ext];
         }
       }
@@ -48,4 +48,4 @@ var Limbo = (function(slice, prototype, undefined) {
   };
 
   return Limbo;
-})([].slice, 'prototype');
+})([].slice, 'prototype', ({}).hasOwnProperty);
