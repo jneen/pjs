@@ -4,7 +4,7 @@ var Limbo = (function(slice, prototype, hasOwnProperty, undefined) {
   function Limbo(_superclass, definition) {
     function C(args) {
       if (!(this instanceof C)) return new C(arguments);
-
+      if (!args) return;
       if (isFunction(obj.init)) obj.init.apply(obj, args);
     }
 
