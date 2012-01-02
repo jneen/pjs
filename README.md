@@ -7,6 +7,8 @@ Limbo is a lightweight layer over javascript's built-in inheritance system that 
 - limit itself to Limbo-defined classes (you can inherit from Error or Boolean or even Function)
 - mixins, interfaces, abstract static factory factories, and other bloat
 - use Object.create (it even works in IE &lt; 8!)
+- break `instanceof`
+- have lots of magical object keys (the only special name is `init`)
 
 # what you can do with limbo
 
@@ -55,7 +57,21 @@ You can call `Limbo` in a few different ways:
 
 ``` js
 // this defines a class that inherits directly from Object.
-Limbo(function(proto, super, class, superclass) { ... });
+Limbo(function(proto, super, class, superclass) {
+  // define private methods as regular functions that take
+  // `self` (or `me`, or `it`, if you want to respect FutureReservedWords
+  function myPrivateMethod(self, arg1, arg2) {
+    // ...
+  }
+
+  proto.init = function() {
+    myPrivateMethod(this, 1, 2)
+  };
+
+  // you can also return an object from this function, which will
+  // be merged into the prototype.
+  return { thing: 3 };
+});
 
 // this defines a class that inherits from MySuperclass
 Limbo(MySuperclass, function(proto, super, class, superclass) {
@@ -65,6 +81,10 @@ Limbo(MySuperclass, function(proto, super, class, superclass) {
     super.init.call(this);
   };
 });
+
+// for shorthand, you can pass an object in lieu of the function argument,
+// but you lose the niceness of super and private methods.
+Limbo({ init: function(a) { this.thing = a } });
 
 MyClass = Limbo(function(p) { p.init = function() { console.log("init!") }; });
 // instantiate objects by calling the class
