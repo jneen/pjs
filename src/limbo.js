@@ -2,25 +2,29 @@ var Limbo = (function(slice, prototype, hasOwnProperty, undefined) {
   function isObject(o) { return o && typeof o === 'object'; }
   function isFunction(f) { return f && typeof f === 'function'; }
   function Limbo(_superclass, definition) {
-    function Noop() {}
+    function C(args) {
+      if (!(this instanceof C)) return new C(arguments);
+
+      if (isFunction(obj.init)) obj.init.apply(obj, args);
+    }
 
     if (definition === undefined) {
       definition = _superclass;
       _superclass = Object;
     }
     else if (isObject(_superclass[prototype])) {
-      Noop[prototype] = new _superclass;
+      C[prototype] = new _superclass;
     }
 
-    var proto = Noop[prototype]
+    var proto = C[prototype]
       , _super = _superclass[prototype]
       , extensions = {}
     ;
 
-    proto.constructor = Noop;
+    proto.constructor = C;
 
     if (isFunction(definition)) {
-      extensions = definition.call(Noop, proto, _super, Noop, _superclass);
+      extensions = definition.call(C, proto, _super, C, _superclass);
     }
     else if (isObject(definition)) {
       extensions = definition;
@@ -34,18 +38,8 @@ var Limbo = (function(slice, prototype, hasOwnProperty, undefined) {
       }
     }
 
-    return Noop;
+    return C;
   }
-
-  Limbo.create = function create(klass /*, args... */) {
-    var args = slice.call(arguments, 1)
-      , obj = new klass
-    ;
-
-    if (isFunction(obj.init)) obj.init.apply(obj, args);
-
-    return obj;
-  };
 
   return Limbo;
 })([].slice, 'prototype', ({}).hasOwnProperty);
