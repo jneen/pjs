@@ -1,5 +1,19 @@
-all:
-	[ -d "build" ] || mkdir "build"
-	uglifyjs src/limbo.js > build/limbo.min.js
-	uglifyjs -b build/limbo.min.js > build/limbo.min.pretty.js
-	wc -c build/limbo.min.js
+SRC = src/limbo.js
+UGLY = build/limbo.min.js
+UGLIFYJS ?= uglifyjs
+
+all: $(UGLY) report
+
+$(UGLY): $(SRC)
+	$(UGLIFYJS) $(SRC) > $(UGLY)
+
+$(PRETTY): $(SRC)
+	$(UGLIFYJS) -b $(SRC) > $(UGLY)
+
+.PHONY: report
+report: $(UGLY)
+	wc -c $(UGLY)
+
+.PHONY: clean
+clean:
+	rm -f build/*
