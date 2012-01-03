@@ -1,6 +1,6 @@
 var Limbo = (function(slice, prototype, hasOwnProperty, undefined) {
-  function isObject(o) { return o && typeof o === 'object'; }
-  function isFunction(f) { return f && typeof f === 'function'; }
+  function isObject(o) { return typeof o === 'object'; }
+  function isFunction(f) { return typeof f === 'function'; }
   function Limbo(_superclass, definition) {
     function C(args) {
       var self = this;
