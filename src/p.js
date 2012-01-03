@@ -1,8 +1,9 @@
 (typeof exports === 'undefined' ? this : exports)
-.Limbo = (function(slice, prototype, hasOwnProperty, undefined) {
+.P = (function(slice, prototype, hasOwnProperty, undefined) {
   function isObject(o) { return typeof o === 'object'; }
   function isFunction(f) { return typeof f === 'function'; }
-  function Limbo(_superclass, definition) {
+
+  function P(_superclass, definition) {
     function C(args) {
       var self = this;
       if (!(self instanceof C)) return new C(arguments);
@@ -42,5 +43,5 @@
     return C;
   }
 
-  return Limbo;
+  return P;
 })([].slice, 'prototype', ({}).hasOwnProperty);

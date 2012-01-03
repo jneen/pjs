@@ -1,9 +1,9 @@
-var Person = C(function(person) {
+var Person = P(function(person) {
   person.init = function(isDancing) { this.dancing = isDancing };
   person.dance = function() { return this.dancing };
 });
 
-var Ninja = C(Person, function(ninja, person) {
+var Ninja = P(Person, function(ninja, person) {
   ninja.init = function() { person.init.call(this, false) };
   ninja.swingSword = function() { return 'swinging sword!' };
 });

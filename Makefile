@@ -1,6 +1,5 @@
-
-SRC = src/limbo.js
-UGLY = build/limbo.min.js
+SRC = src/p.js
+UGLY = build/p.min.js
 UGLIFYJS ?= uglifyjs
 CLEAN += $(UGLY)
 
@@ -29,7 +28,7 @@ test: $(UGLY)
 
 # XXX this is kind of awful, but hey, it keeps the version info in the right place.
 VERSION = $(shell node -e 'console.log(JSON.parse(require("fs").readFileSync(__dirname + "/package.json")).version)')
-PACKAGE = limbo-$(VERSION).tgz
+PACKAGE = pjs-$(VERSION).tgz
 CLEAN += $(PACKAGE)
 
 $(PACKAGE): test
@@ -38,10 +37,9 @@ $(PACKAGE): test
 .PHONY: package
 package: $(PACKAGE)
 
-# not ready yet
-# .PHONY: publish
-# publish: $(PACKAGE)
-# 	npm publish $(PACKAGE)
+.PHONY: publish
+publish: $(PACKAGE)
+	npm publish $(PACKAGE)
 
 # -*- cleanup -*- #
 .PHONY: clean

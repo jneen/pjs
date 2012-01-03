@@ -1,10 +1,10 @@
 {
-  "name": "limbo",
-  "version": "0.0.1",
+  "name": "pjs",
+  "version": "0.0.2",
   "description": "A lightweight class system for the limbo artist",
-  "keywords": ["class", "limbo", "inheritance", "super"],
+  "keywords": ["class", "pjs", "P", "inheritance", "super"],
   "author": "Jay Adkisson <jjmadkisson at gmail dot com>",
-  "repository": "git://github.com/jayferd/limbo",
+  "repository": "git://github.com/jayferd/pjs",
 
   "files": ["index.js", "src", "build", "test", "Makefile", "package.json"],
   "main": "index.js",

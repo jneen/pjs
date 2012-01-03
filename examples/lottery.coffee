@@ -1,10 +1,10 @@
 # see http://mislav.uniqpath.com/poignant-guide/book/chapter-5.html
-{Limbo} = require('limbo')
+{P} = require('p')
 {uniq, intersection} = require('underscore')
 
 randInt = (max) -> Math.floor(max * Math.random())
 
-exports.LotteryTicket = LotteryTicket = Limbo (ticket) ->
+exports.LotteryTicket = LotteryTicket = P (ticket) ->
   MAX = 25
   MIN = 1
   ticket.init = (picks...) ->

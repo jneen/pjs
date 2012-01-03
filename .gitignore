@@ -1,4 +1,4 @@
 .*.sw[a-z]
 build/*
 
-/limbo-*.tgz
+/*.tgz

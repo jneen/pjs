@@ -1,10 +1,10 @@
 var assert = require('assert')
-  , Limbo = require('./../index').Limbo
+  , P = require('./../index').P
 ;
 
-describe('Limbo', function() {
+describe('P', function() {
   describe('creating idiomatic classes', function() {
-    var MyClass = Limbo(function(p) {
+    var MyClass = P(function(p) {
       p.foo = 1
     });
 
@@ -23,7 +23,7 @@ describe('Limbo', function() {
   });
 
   describe('init', function() {
-    var MyClass = Limbo(function(p) {
+    var MyClass = P(function(p) {
       p.init = function() {
         this.initCalled = true;
         this.initArgs = arguments;
@@ -44,12 +44,12 @@ describe('Limbo', function() {
 
   describe('inheritance', function() {
     // see examples/ninja.js
-    var Person = Limbo(function(person) {
+    var Person = P(function(person) {
       person.init = function(isDancing) { this.dancing = isDancing };
       person.dance = function() { return this.dancing };
     });
 
-    var Ninja = Limbo(Person, function(ninja, person) {
+    var Ninja = P(Person, function(ninja, person) {
       ninja.init = function() { person.init.call(this, false) };
       ninja.swingSword = function() { return 'swinging sword!' };
     });
@@ -68,36 +68,36 @@ describe('Limbo', function() {
   describe('definition', function() {
     it('passes the prototype as the first arg', function() {
       var proto;
-      var MyClass = Limbo(function(p) { proto = p; });
+      var MyClass = P(function(p) { proto = p; });
 
       assert.equal(proto, MyClass.prototype);
     });
 
     it('passes the superclass prototype as the second arg', function() {
       var _super;
-      Limbo(Error, function(a, b) { _super = b; });
+      P(Error, function(a, b) { _super = b; });
       assert.equal(_super, Error.prototype);
     });
 
     it('passes the class itself as the third arg', function() {
       var klass;
-      var MyClass = Limbo(function(a, b, c) { klass = c; });
+      var MyClass = P(function(a, b, c) { klass = c; });
 
       assert.equal(klass, MyClass);
     });
 
     it('passes the superclass as the fourth argument', function() {
       var sclass;
-      var MyClass = Limbo(function(a, b, c, d) { sclass = d; });
+      var MyClass = P(function(a, b, c, d) { sclass = d; });
       assert.equal(Object, sclass);
 
-      Limbo(MyClass, function(a, b, c, d) { sclass = d; });
+      P(MyClass, function(a, b, c, d) { sclass = d; });
       assert.equal(MyClass, sclass);
     });
 
     it('passes the class itself as `this`', function() {
       var klass;
-      var MyClass = Limbo(function() { klass = this; });
+      var MyClass = P(function() { klass = this; });
       assert.equal(MyClass, klass);
     });
 
