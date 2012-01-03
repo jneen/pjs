@@ -88,8 +88,11 @@ describe('Limbo', function() {
 
     it('passes the superclass as the fourth argument', function() {
       var sclass;
-      Limbo(function(a, b, c, d) { sclass = d; });
+      var MyClass = Limbo(function(a, b, c, d) { sclass = d; });
       assert.equal(Object, sclass);
+
+      Limbo(MyClass, function(a, b, c, d) { sclass = d; });
+      assert.equal(MyClass, sclass);
     });
 
     it('passes the class itself as `this`', function() {
