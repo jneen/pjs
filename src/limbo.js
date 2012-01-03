@@ -3,8 +3,9 @@ var Limbo = (function(slice, prototype, hasOwnProperty, undefined) {
   function isFunction(f) { return f && typeof f === 'function'; }
   function Limbo(_superclass, definition) {
     function C(args) {
-      if (!(this instanceof C)) return new C(arguments);
-      if (args && isFunction(obj.init)) obj.init.apply(obj, args);
+      var self = this;
+      if (!(self instanceof C)) return new C(arguments);
+      if (args && isFunction(self.init)) self.init.apply(self, args);
     }
 
     if (definition === undefined) {
