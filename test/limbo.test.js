@@ -64,4 +64,39 @@ describe('Limbo', function() {
       assert.equal(false, ninja.dance());
     });
   });
+
+  describe('definition', function() {
+    it('passes the prototype as the first arg', function() {
+      var proto;
+      var MyClass = Limbo(function(p) { proto = p; });
+
+      assert.equal(proto, MyClass.prototype);
+    });
+
+    it('passes the superclass prototype as the second arg', function() {
+      var _super;
+      Limbo(Error, function(a, b) { _super = b; });
+      assert.equal(_super, Error.prototype);
+    });
+
+    it('passes the class itself as the third arg', function() {
+      var klass;
+      var MyClass = Limbo(function(a, b, c) { klass = c; });
+
+      assert.equal(klass, MyClass);
+    });
+
+    it('passes the superclass as the fourth argument', function() {
+      var sclass;
+      Limbo(function(a, b, c, d) { sclass = d; });
+      assert.equal(Object, sclass);
+    });
+
+    it('passes the class itself as `this`', function() {
+      var klass;
+      var MyClass = Limbo(function() { klass = this; });
+      assert.equal(MyClass, klass);
+    });
+
+  });
 });
