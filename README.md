@@ -60,7 +60,7 @@ You can call `P` in a few different ways:
 // this defines a class that inherits directly from Object.
 P(function(proto, super, class, superclass) {
   // define private methods as regular functions that take
-  // `self` (or `me`, or `it`, if you want to respect FutureReservedWords
+  // `self` (or `me`, or `it`, or anything you really want)
   function myPrivateMethod(self, arg1, arg2) {
     // ...
   }
