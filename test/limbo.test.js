@@ -1,5 +1,5 @@
 var assert = require('assert')
-  , Limbo = require('./../build/limbo.min.js').Limbo
+  , Limbo = require('./../index').Limbo
 ;
 
 describe('Limbo', function() {

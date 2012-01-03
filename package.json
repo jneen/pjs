@@ -1,0 +1,17 @@
+{
+  "name": "limbo",
+  "version": "0.0.1",
+  "description": "A lightweight class system for the limbo artist",
+  "keywords": ["class", "limbo", "inheritance", "super"],
+  "author": "Jay Adkisson <jjmadkisson at gmail dot com>",
+  "repository": "git://github.com/jayferd/limbo",
+
+  "files": ["index.js", "src", "build", "test", "Makefile", "package.json"],
+  "main": "index.js",
+  "devDependencies": {
+    "mocha": "0.8.1"
+  },
+  "scripts": {
+    "test": "make test"
+  }
+}
