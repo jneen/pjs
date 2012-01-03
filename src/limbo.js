@@ -1,4 +1,5 @@
-var Limbo = (function(slice, prototype, hasOwnProperty, undefined) {
+(typeof exports === 'undefined' ? this : exports)
+.Limbo = (function(slice, prototype, hasOwnProperty, undefined) {
   function isObject(o) { return typeof o === 'object'; }
   function isFunction(f) { return typeof f === 'function'; }
   function Limbo(_superclass, definition) {

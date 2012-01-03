@@ -2,8 +2,10 @@ SRC = src/limbo.js
 UGLY = build/limbo.min.js
 UGLIFYJS ?= uglifyjs
 
+
 all: $(UGLY) report
 
+# compilation
 $(UGLY): $(SRC)
 	$(UGLIFYJS) $(SRC) > $(UGLY)
 
@@ -17,3 +19,10 @@ report: $(UGLY)
 .PHONY: clean
 clean:
 	rm -f build/*
+
+# testing
+MOCHA ?= mocha
+TESTS = ./test/*.test.js
+.PHONY: test
+test: $(UGLY)
+	$(MOCHA) $(TESTS)
