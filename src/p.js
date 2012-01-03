@@ -1,5 +1,4 @@
-(typeof exports === 'undefined' ? this : exports)
-.P = (function(slice, prototype, hasOwnProperty, undefined) {
+var P = (function(slice, prototype, hasOwnProperty, undefined) {
   function isObject(o) { return typeof o === 'object'; }
   function isFunction(f) { return typeof f === 'function'; }
 
@@ -45,3 +44,5 @@
 
   return P;
 })([].slice, 'prototype', ({}).hasOwnProperty);
+
+if (typeof exports !== 'undefined') exports.P = P
