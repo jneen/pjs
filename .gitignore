@@ -2,3 +2,5 @@
 build/*
 
 /*.tgz
+
+npm-*.log
