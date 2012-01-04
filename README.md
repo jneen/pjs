@@ -50,8 +50,8 @@ Unlike [some][prototypejs] [other][classjs] [frameworks][joose] [out][zjs] [ther
 - mixins, interfaces, abstract static factory factories, [and][joose] [other][prototypejs] [bloat][zjs]
 - use Object.create (it even works in IE &lt; 8!)
 - break `instanceof`
-- [hack functions onto `this` at runtime][classjs] (the only special name is `init`)
-- rely on magical object keys which don't minify
+- [hack functions onto `this` at runtime][classjs]
+- rely on magical object keys which don't minify (the only special name is `init`)
 
 [prototypejs]: http://prototypejs.org/learn/class-inheritance
 [classjs]: https://github.com/kilhage/class.js
