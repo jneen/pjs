@@ -63,6 +63,7 @@ Unlike [some][prototypejs] [other][classjs] [frameworks][joose] [out][zjs] [ther
 
 - inheritable constructors (via the optional `init` method)
 - closure-based "private" methods (see below)
+- easily call `super` on public methods without any dirty hacks
 - instantiate your objects without calling the constructor (absolutely necessary for inheritance)
 - construct objects with variable arguments
 
