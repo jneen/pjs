@@ -41,7 +41,7 @@ tom.move()
 
 ## how is pjs different from X
 
-Most class systems for JS let you define classes by passing an object.  P.js lets you pass a function instead, which allows you to closure private methods and macros.
+Most class systems for JS let you define classes by passing an object.  P.js lets you pass a function instead, which allows you to closure private methods and macros.  It's also <500b minified.
 
 ### why doesn't pjs suck?
 
