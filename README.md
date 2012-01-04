@@ -100,7 +100,7 @@ P(MySuperclass, function(proto, super, class, superclass) {
 
 // for shorthand, you can pass an object in lieu of the function argument,
 // but you lose the niceness of super and private methods.
-Limbo({ init: function(a) { this.thing = a } });
+P({ init: function(a) { this.thing = a } });
 
 MyClass = P(function(p) { p.init = function() { console.log("init!") }; });
 // instantiate objects by calling the class
