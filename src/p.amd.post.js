@@ -1,1 +1,2 @@
-define(function () { return P; });
+return P;
+});
