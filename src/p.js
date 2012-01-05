@@ -2,20 +2,20 @@ var P = (function(slice, prototype, hasOwnProperty, undefined) {
   function isObject(o) { return typeof o === 'object'; }
   function isFunction(f) { return typeof f === 'function'; }
 
-  function P(_superclass, definition) {
+  function P(_superclass /* = Object */, definition) {
+    // handle the case where no superclass is given
+    if (definition === undefined) {
+      definition = _superclass;
+      _superclass = Object;
+    }
+
     function C(args) {
       var self = this;
       if (!(self instanceof C)) return new C(arguments);
       if (args && isFunction(self.init)) self.init.apply(self, args);
     }
 
-    if (definition === undefined) {
-      definition = _superclass;
-      _superclass = Object;
-    }
-    else if (isObject(_superclass[prototype])) {
-      C[prototype] = new _superclass;
-    }
+    C[prototype] = new _superclass;
 
     var proto = C[prototype]
       , _super = _superclass[prototype]
