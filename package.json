@@ -1,6 +1,6 @@
 {
   "name": "pjs",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "A lightweight class system for the limbo artist",
   "keywords": ["class", "pjs", "P", "inheritance", "super"],
   "author": "Jay Adkisson <jjmadkisson at gmail dot com>",
