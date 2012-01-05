@@ -27,7 +27,7 @@ $(BUILD_DIR)/p.%.js: $(SRC_DIR)/%/pre.js $(SRC) $(SRC_DIR)/%/post.js
 	cat $^ > $@
 
 .PHONY: commonjs
-commonjs: $(COMMONJS) $(BUILD_DIR)/p.commonjs.min.js
+commonjs: $(COMMONJS)
 
 .PHONY: amd
 amd: $(BUILD_DIR)/p.amd.js $(BUILD_DIR)/p.amd.min.js
