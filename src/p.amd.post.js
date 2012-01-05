@@ -1,1 +1,1 @@
-define('pjs', P);
+define(function () { return P; });
