@@ -6,7 +6,7 @@ UGLIFYJS ?= uglifyjs
 UGLY = $(BUILD_DIR)/p.min.js
 
 
-all: $(BUILD_DIR)/p.min.js report
+all: minify commonjs amd report
 
 # -*- minification -*- #
 $(UGLY): $(SRC)
@@ -14,6 +14,8 @@ $(UGLY): $(SRC)
 
 $(BUILD_DIR)/%.min.js: $(BUILD_DIR)/%.js
 	$(UGLIFYJS) $< > $@
+
+minify: $(UGLY)
 
 # special builds
 COMMONJS = $(BUILD_DIR)/p.commonjs.js
