@@ -23,7 +23,7 @@ minify: $(UGLY)
 # special builds
 COMMONJS = $(BUILD_DIR)/p.commonjs.js
 
-$(BUILD_DIR)/p.%.js: $(SRC) $(SRC_DIR)/p.%.post.js
+$(BUILD_DIR)/p.%.js: $(SRC_DIR)/%/pre.js $(SRC) $(SRC_DIR)/%/post.js
 	cat $^ > $@
 
 .PHONY: commonjs
