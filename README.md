@@ -109,3 +109,23 @@ MyClass() // => init!
 // allocate blank objects with `new`
 new MyClass // nothing logged
 ```
+
+## what is all this Makefile stuff about
+
+It's super useful!  Here are the things you can build:
+
+- `make minify`
+    generates `build/p.min.js`
+
+- `make commonjs`
+    generates `build/p.commonjs.js`, which is the same but has `exports.P = P` at the end
+
+- `make amd`
+    generates `build/p.amd.js`, which is the same but has `define(P)` at the end
+
+- `make test`
+    runs the test suite using the commonjs version.  Requires `mocha`.
+
+(*) uglifyjs is required for some of these.
+
+(**) I tested these tasks with GNU make.  If someone could verify this all works with BSD make (like on a Mac) that'd be awesome.
