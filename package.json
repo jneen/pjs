@@ -9,7 +9,8 @@
   "files": ["index.js", "src", "build", "test", "Makefile", "package.json"],
   "main": "index.js",
   "devDependencies": {
-    "mocha": "0.8.1"
+    "mocha": "*",
+    "uglifyjs": "*"
   },
   "scripts": {
     "install": "make commonjs",
