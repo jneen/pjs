@@ -1,42 +1,29 @@
 SRC_DIR = src
 BUILD_DIR = build
+CLEAN += $(BUILD_DIR)/*
 SRC = $(SRC_DIR)/p.js
-UGLY = $(BUILD_DIR)/p.min.js
 UGLIFYJS ?= uglifyjs
-CLEAN += $(UGLY)
+UGLY = $(BUILD_DIR)/p.min.js
 
 
-all: $(UGLY) report
+all: $(BUILD_DIR)/p.min.js report
 
 # -*- minification -*- #
 $(UGLY): $(SRC)
-	$(UGLIFYJS) $(SRC) > $(UGLY)
+	$(UGLIFYJS) $< > $@
 
-$(PRETTY): $(SRC)
-	$(UGLIFYJS) -b $(SRC) > $(UGLY)
+$(BUILD_DIR)/%.min.js: $(BUILD_DIR)/%.js
+	$(UGLIFYJS) $< > $@
 
 # special builds
-COMMONJS = $(BUILD_DIR)/p.commonjs.js
-COMMONJS_POST = src/p.commonjs_post.js
-CLEAN += $(COMMONJS)
-$(COMMONJS): $(SRC) $(COMMONJS_POST)
-	cat $(SRC) $(COMMONJS_POST) > $(COMMONJS)
-
-AMD = $(BUILD_DIR)/p.amd.js
-AMD_MIN = $(BUILD_DIR)/p.amd.min.js
-CLEAN += $(AMD) $(AMD_MIN)
-AMD_POST = src/p.amd_post.js
-$(AMD): $(SRC) $(AMD_POST)
-	cat $(SRC) $(AMD_POST) > $(AMD)
-
-$(AMD_MIN): $(AMD)
-	$(UGLIFYJS) $(AMD) > $(AMD_MIN)
+$(BUILD_DIR)/p.%.js: $(SRC) $(SRC_DIR)/p.%.post.js
+	cat $^ > $@
 
 .PHONY: commonjs
-commonjs: $(COMMONJS)
+commonjs: $(BUILD_DIR)/p.commonjs.js $(BUILD_DIR)/p.commonjs.min.js
 
 .PHONY: amd
-amd: $(AMD) $(AMD_MIN)
+amd: $(BUILD_DIR)/p.amd.js $(BUILD_DIR)/p.amd.min.js
 
 .PHONY: report
 report: $(UGLY)
