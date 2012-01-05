@@ -44,5 +44,3 @@ var P = (function(slice, prototype, hasOwnProperty, undefined) {
 
   return P;
 })([].slice, 'prototype', ({}).hasOwnProperty);
-
-if (typeof exports !== 'undefined') exports.P = P

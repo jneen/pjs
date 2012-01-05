@@ -12,6 +12,7 @@
     "mocha": "0.8.1"
   },
   "scripts": {
+    "install": "make commonjs",
     "test": "make test"
   }
 }
