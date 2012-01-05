@@ -1,14 +1,17 @@
+# -*- globals -*- #
 SRC_DIR = src
 BUILD_DIR = build
 CLEAN += $(BUILD_DIR)/*
 SRC = $(SRC_DIR)/p.js
-UGLIFYJS ?= uglifyjs
-UGLY = $(BUILD_DIR)/p.min.js
 
-
+.PHONY: all
 all: minify commonjs amd report
 
 # -*- minification -*- #
+UGLIFYJS ?= uglifyjs
+UGLIFY_OPTS += --lift-vars --unsafe
+UGLY = $(BUILD_DIR)/p.min.js
+
 $(UGLY): $(SRC)
 	$(UGLIFYJS) $< > $@
 
@@ -24,7 +27,7 @@ $(BUILD_DIR)/p.%.js: $(SRC) $(SRC_DIR)/p.%.post.js
 	cat $^ > $@
 
 .PHONY: commonjs
-commonjs: $(BUILD_DIR)/p.commonjs.js $(BUILD_DIR)/p.commonjs.min.js
+commonjs: $(COMMONJS) $(BUILD_DIR)/p.commonjs.min.js
 
 .PHONY: amd
 amd: $(BUILD_DIR)/p.amd.js $(BUILD_DIR)/p.amd.min.js
