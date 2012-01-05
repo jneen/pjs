@@ -1,17 +1,36 @@
-SRC = src/p.js
-UGLY = build/p.min.js
-UGLIFYJS ?= uglifyjs
-CLEAN += $(UGLY)
+# -*- globals -*- #
+SRC_DIR = src
+BUILD_DIR = build
+CLEAN += $(BUILD_DIR)/*
+SRC = $(SRC_DIR)/p.js
 
-
-all: $(UGLY) report
+.PHONY: all
+all: minify commonjs amd report
 
 # -*- minification -*- #
-$(UGLY): $(SRC)
-	$(UGLIFYJS) $(SRC) > $(UGLY)
+UGLIFYJS ?= uglifyjs
+UGLIFY_OPTS += --lift-vars --unsafe
+UGLY = $(BUILD_DIR)/p.min.js
 
-$(PRETTY): $(SRC)
-	$(UGLIFYJS) -b $(SRC) > $(UGLY)
+$(UGLY): $(SRC)
+	$(UGLIFYJS) $< > $@
+
+$(BUILD_DIR)/%.min.js: $(BUILD_DIR)/%.js
+	$(UGLIFYJS) $< > $@
+
+minify: $(UGLY)
+
+# special builds
+COMMONJS = $(BUILD_DIR)/p.commonjs.js
+
+$(BUILD_DIR)/p.%.js: $(SRC) $(SRC_DIR)/p.%.post.js
+	cat $^ > $@
+
+.PHONY: commonjs
+commonjs: $(COMMONJS) $(BUILD_DIR)/p.commonjs.min.js
+
+.PHONY: amd
+amd: $(BUILD_DIR)/p.amd.js $(BUILD_DIR)/p.amd.min.js
 
 .PHONY: report
 report: $(UGLY)
@@ -21,7 +40,7 @@ report: $(UGLY)
 MOCHA ?= mocha
 TESTS = ./test/*.test.js
 .PHONY: test
-test: $(UGLY)
+test: $(COMMONJS)
 	$(MOCHA) $(TESTS)
 
 # -*- packaging -*- #
