@@ -16,6 +16,8 @@ $(BUILD_DIR)/%.min.js: $(BUILD_DIR)/%.js
 	$(UGLIFYJS) $< > $@
 
 # special builds
+COMMONJS = $(BUILD_DIR)/p.commonjs.js
+
 $(BUILD_DIR)/p.%.js: $(SRC) $(SRC_DIR)/p.%.post.js
 	cat $^ > $@
 
