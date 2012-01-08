@@ -50,7 +50,7 @@ VERSION = $(shell node -e 'console.log(JSON.parse(require("fs").readFileSync(__d
 PACKAGE = pjs-$(VERSION).tgz
 CLEAN += pjs-*.tgz
 
-$(PACKAGE): test
+$(PACKAGE): clean commonjs test
 	npm pack .
 
 .PHONY: package

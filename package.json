@@ -13,7 +13,6 @@
     "uglifyjs": "*"
   },
   "scripts": {
-    "install": "make commonjs",
     "test": "make test"
   }
 }
