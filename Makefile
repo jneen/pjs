@@ -15,7 +15,7 @@ UGLY = $(BUILD_DIR)/p.min.js
 $(UGLY): $(SRC)
 	$(UGLIFYJS) $< > $@
 
-$(BUILD_DIR)/%.min.js: $(BUILD_DIR)/%.js
+%.min.js: %.js
 	$(UGLIFYJS) $< > $@
 
 minify: $(UGLY)
