@@ -16,7 +16,7 @@ $(UGLY): $(SRC)
 	$(UGLIFYJS) $(UGLIFY_OPTS) $< > $@
 
 %.min.js: %.js
-	$(UGLIFYJS) $< > $@
+	$(UGLIFYJS) $(UGLIFY_OPTS) $< > $@
 
 minify: $(UGLY)
 
