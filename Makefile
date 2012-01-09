@@ -13,7 +13,7 @@ UGLIFY_OPTS += --lift-vars --unsafe
 UGLY = $(BUILD_DIR)/p.min.js
 
 $(UGLY): $(SRC)
-	$(UGLIFYJS) $< > $@
+	$(UGLIFYJS) $(UGLIFY_OPTS) $< > $@
 
 %.min.js: %.js
 	$(UGLIFYJS) $< > $@
