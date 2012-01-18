@@ -40,6 +40,13 @@ describe('P', function() {
     it('is not called when the new keyword is given', function() {
       assert.ok(!(new MyClass).initCalled);
     });
+
+    it('is called when an argument is passed with `new`', function() {
+      var obj = new MyClass([1, 2]);
+      assert.ok(obj.initCalled);
+      assert.equal(1, obj.initArgs[0]);
+      assert.equal(2, obj.initArgs[1]);
+    });
   });
 
   describe('inheritance', function() {
