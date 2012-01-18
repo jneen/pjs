@@ -102,12 +102,19 @@ P(MySuperclass, function(proto, super, class, superclass) {
 // but you lose the niceness of super and private methods.
 P({ init: function(a) { this.thing = a } });
 
-MyClass = P(function(p) { p.init = function() { console.log("init!") }; });
+MyClass = P(function(p) { p.init = function(a, b) { console.log("init!", a, b) }; });
 // instantiate objects by calling the class
-MyClass() // => init!
+MyClass(1, 2) // => init!, 1, 2
 
 // allocate blank objects with `new`
 new MyClass // nothing logged
+
+// to initialize with varargs, use `apply` like any other function.
+var argsList = [1, 2];
+MyClass.apply(null, argsList) // init!, 1, 2
+
+// or do it the sneaky way
+new MyClass(argsList) // init!, 1, 2
 ```
 
 ## what is all this Makefile stuff about

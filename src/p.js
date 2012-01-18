@@ -32,6 +32,8 @@ var P = (function(slice, prototype, hasOwnProperty, undefined) {
     //    Arguments object.  In this case, the presence of `new` means the
     //    return trap is not sprung, but the initializer is called if present.
     //
+    //    You can also call `new C([a, b, c])`, which is equivalent to `C(a, b, c)`.
+    //
     //  TODO: the Chrome inspector shows all created objects as `C` rather than `Object`.
     //        Setting the .name property seems to have no effect.  Is there a way to override
     //        this behavior?
