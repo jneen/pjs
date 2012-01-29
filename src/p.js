@@ -1,4 +1,4 @@
-var P = (function(slice, prototype, hasOwnProperty, undefined) {
+var P = (function(prototype, hasOwnProperty, undefined) {
   // helper functions that also help minification
   function isObject(o) { return typeof o === 'object'; }
   function isFunction(f) { return typeof f === 'function'; }
@@ -83,4 +83,4 @@ var P = (function(slice, prototype, hasOwnProperty, undefined) {
 
   // as a minifier optimization, we've closured in a few helper functions
   // and the string 'prototype' (C[p] is much shorter than C.prototype)
-})([].slice, 'prototype', ({}).hasOwnProperty);
+})('prototype', ({}).hasOwnProperty);
