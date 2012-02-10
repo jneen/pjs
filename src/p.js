@@ -23,7 +23,7 @@ var P = (function(prototype, hasOwnProperty, undefined) {
     // 2) A user will simply call C(a, b, c, ...) to create a new object with
     //    initialization.  This allows the user to create objects without `new`,
     //    and in particular to initialize objects with variable arguments, which
-    //    is impossible with tne `new` keyword.  Note that in this case,
+    //    is impossible with the `new` keyword.  Note that in this case,
     //    !(this instanceof C) springs the return trap at the beginning, and
     //    C is called with the `new` keyword and one argument, which is the
     //    Arguments object passed in.
