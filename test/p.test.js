@@ -72,6 +72,52 @@ describe('P', function() {
     });
   });
 
+  describe('inheriting builtins', function() {
+    describe('Error', function() {
+      var MyError = P(Error, {});
+
+      try {
+        throw MyError('o noes');
+      } catch(e) {
+        assert.ok(e instanceof MyError);
+      }
+    });
+
+    describe('RegExp', function() {
+      var MyRegExp = P(RegExp, {})
+        , re = MyRegExp('a(b+)c')
+      ;
+
+      assert.ok(re instanceof RegExp);
+      // pending: doesn't work yet
+      // assert.ok(MyRegExp('a(b+)c').test('abbbbc'))
+    });
+
+    describe('String', function() {
+      var MyString = P(String, {})
+        , str = MyString('foo')
+      ;
+
+      assert.ok(str instanceof String);
+      // pending: doesn't work yet
+      // assert.equal('foo', str.toString());
+    });
+
+    describe('Array', function() {
+      var MyArray = P(Array, {})
+        , ary = MyArray(1,2,3)
+      ;
+
+      assert.ok(ary instanceof Array);
+      // apparently the Array constructor isn't destructive :(
+      // when you `apply` it to an instance of Array, it just creates
+      // a new one for you.  Bah.
+
+      // assert.equal(3, ary.length);
+      // assert.equal(1, ary[0]);
+    });
+  });
+
   describe('definition', function() {
     it('passes the prototype as the first arg', function() {
       var proto;
