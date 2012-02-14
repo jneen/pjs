@@ -46,10 +46,9 @@ var P = (function(prototype, hasOwnProperty, undefined) {
     // set up the prototype of the new class
     // note that this resolves to `new Object`
     // if the superclass isn't given
-    C[prototype] = new _superclass;
+    var proto = C[prototype] = new _superclass
 
-    var proto = C[prototype]
-      , _super = _superclass[prototype]
+    var _super = _superclass[prototype]
       , extensions = {}
     ;
 
