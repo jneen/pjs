@@ -35,6 +35,7 @@ describe('P', function() {
     it('is called when the class is called plainly', function() {
       assert.ok(MyClass().initCalled);
       assert.equal(3, MyClass(1,2,3).initArgs[2]);
+      assert.equal(2, MyClass.apply(null, [1, 2, 3]).initArgs[1]);
     });
 
     it('is not called when the new keyword is given', function() {
