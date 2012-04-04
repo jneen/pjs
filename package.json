@@ -10,7 +10,7 @@
   "main": "index.js",
   "devDependencies": {
     "mocha": "*",
-    "uglifyjs": "*"
+    "uglify-js": "*"
   },
   "scripts": {
     "test": "make test"
