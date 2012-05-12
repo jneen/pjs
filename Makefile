@@ -24,6 +24,7 @@ minify: $(UGLY)
 COMMONJS = $(BUILD_DIR)/p.commonjs.js
 
 $(BUILD_DIR)/p.%.js: $(SRC_DIR)/%/pre.js $(SRC) $(SRC_DIR)/%/post.js
+	mkdir -p $(BUILD_DIR)
 	cat $^ > $@
 
 .PHONY: commonjs

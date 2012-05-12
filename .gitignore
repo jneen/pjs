@@ -1,8 +1,5 @@
-.*.sw[a-z]
-build/*
-
 /*.tgz
+/build
 
 npm-*.log
-
 /node_modules
