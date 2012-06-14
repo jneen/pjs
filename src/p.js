@@ -48,9 +48,10 @@ var P = (function(prototype, hasOwnProperty, undefined) {
     // if the superclass isn't given
     var proto = C[prototype] = new _superclass;
     var _super = _superclass[prototype];
+    var extensions;
 
     var mixin = C.mixin = function(def) {
-      var extensions = {};
+      extensions = {};
 
       if (isFunction(def)) {
         // call the defining function with all the arguments you need
