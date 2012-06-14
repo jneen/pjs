@@ -156,4 +156,35 @@ describe('P', function() {
     });
 
   });
+
+  describe('mixins', function() {
+    var C = P();
+    var count = 0;
+    it('reopens classes', function() {
+      var mixin1 = function(proto) {
+        proto.foo = 1;
+      };
+
+      var mixin2 = { foo: 2 };
+
+      assert.equal(C().foo, undefined);
+
+      C.mixin(mixin1);
+      assert.equal(C().foo, 1);
+
+      // chainable!
+      C.mixin(mixin1).mixin(mixin2);
+      assert.equal(C().foo, 2);
+    });
+
+    it('calls the mixin multiple times', function() {
+      count = 0;
+      var mixin = function() { count += 1 };
+
+      C.mixin(mixin);
+      assert.equal(count, 1);
+      C.mixin(mixin);
+      assert.equal(count, 2);
+    });
+  });
 });

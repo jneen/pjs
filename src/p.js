@@ -46,41 +46,44 @@ var P = (function(prototype, hasOwnProperty, undefined) {
     // set up the prototype of the new class
     // note that this resolves to `new Object`
     // if the superclass isn't given
-    var proto = C[prototype] = new _superclass
+    var proto = C[prototype] = new _superclass;
+    var _super = _superclass[prototype];
 
-    var _super = _superclass[prototype]
-      , extensions = {}
-    ;
+    var mixin = C.mixin = function(def) {
+      var extensions = {};
+
+      if (isFunction(def)) {
+        // call the defining function with all the arguments you need
+        // extensions captures the return value.
+        extensions = def.call(C, proto, _super, C, _superclass);
+      }
+      else if (isObject(def)) {
+        // if you passed an object instead, we'll take it
+        extensions = def;
+      }
+
+      // ...and extend it
+      if (isObject(extensions)) {
+        for (var ext in extensions) {
+          if (hasOwnProperty.call(extensions, ext)) {
+            proto[ext] = extensions[ext];
+          }
+        }
+      }
+
+      // if there's no init, we assume we're inheriting a non-pjs class, so
+      // we default to applying the superclass's constructor.
+      if (!isFunction(proto.init)) {
+        proto.init = function() { _superclass.apply(this, arguments); };
+      }
+
+      return C;
+    }
 
     // set the constructor property, for convenience
     proto.constructor = C;
 
-    if (isFunction(definition)) {
-      // call the defining function with all the arguments you need
-      // extensions captures the return value.
-      extensions = definition.call(C, proto, _super, C, _superclass);
-    }
-    else if (isObject(definition)) {
-      // if you passed an object instead, we'll take it
-      extensions = definition;
-    }
-
-    // ...and extend it
-    if (isObject(extensions)) {
-      for (var ext in extensions) {
-        if (hasOwnProperty.call(extensions, ext)) {
-          proto[ext] = extensions[ext];
-        }
-      }
-    }
-
-    // if there's no init, we assume we're inheriting a non-pjs class, so
-    // we default to applying the superclass's constructor.
-    if (!isFunction(proto.init)) {
-      proto.init = function() { _superclass.apply(this, arguments); };
-    }
-
-    return C;
+    return mixin(definition);
   }
 
   // ship it
