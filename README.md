@@ -41,13 +41,13 @@ tom.move()
 
 ## how is pjs different from X
 
-Most class systems for JS let you define classes by passing an object.  P.js lets you pass a function instead, which allows you to closure private methods and macros.  It's also <500b minified.
+Most class systems for JS let you define classes by passing an object.  P.js lets you pass a function instead, which allows you to closure private methods and macros.  It's also 517 bytes minified (see `make report`).
 
 ### why doesn't pjs suck?
 
 Unlike [some][prototypejs] [other][classjs] [frameworks][joose] [out][zjs] [there][structr], Pjs doesn't do any of this:
 
-- mixins, interfaces, abstract static factory factories, [and][joose] [other][prototypejs] [bloat][zjs]
+- interfaces, abstract static factory factories, [and][joose] [other][prototypejs] [bloat][zjs]
 - use Object.create (it even works in IE &lt; 8!)
 - break `instanceof`
 - [hack functions onto `this` at runtime][classjs]
@@ -101,6 +101,12 @@ P(MySuperclass, function(proto, super, class, superclass) {
 // for shorthand, you can pass an object in lieu of the function argument,
 // but you lose the niceness of super and private methods.
 P({ init: function(a) { this.thing = a } });
+
+// you can use `.mixin` to reopen a class.  This has the same behavior
+// as the regular definitions.
+MyClass = P({ a: 1 });
+MyClass.mixin(function(proto) { proto.a = 2 });
+MyClass().a // => 2
 
 MyClass = P(function(p) { p.init = function(a, b) { console.log("init!", a, b) }; });
 // instantiate objects by calling the class
