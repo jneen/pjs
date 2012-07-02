@@ -39,10 +39,15 @@ report: $(UGLY)
 
 # -*- testing -*- #
 MOCHA ?= mocha
+JSHINT ?= jshint
 TESTS = ./test/*.test.js
 .PHONY: test
-test: $(COMMONJS)
+test: jshint $(COMMONJS)
 	$(MOCHA) $(TESTS)
+
+.PHONY: jshint
+jshint:
+	$(JSHINT) $(SRC)
 
 # -*- packaging -*- #
 

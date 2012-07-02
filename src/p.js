@@ -1,4 +1,4 @@
-var P = (function(prototype, hasOwnProperty, undefined) {
+var P = (function(prototype, ownProperty, undefined) {
   // helper functions that also help minification
   function isObject(o) { return typeof o === 'object'; }
   function isFunction(f) { return typeof f === 'function'; }
@@ -46,7 +46,7 @@ var P = (function(prototype, hasOwnProperty, undefined) {
     // set up the prototype of the new class
     // note that this resolves to `new Object`
     // if the superclass isn't given
-    var proto = C[prototype] = new _superclass;
+    var proto = C[prototype] = new _superclass();
     var _super = _superclass[prototype];
     var extensions;
 
@@ -66,7 +66,7 @@ var P = (function(prototype, hasOwnProperty, undefined) {
       // ...and extend it
       if (isObject(extensions)) {
         for (var ext in extensions) {
-          if (hasOwnProperty.call(extensions, ext)) {
+          if (ownProperty.call(extensions, ext)) {
             proto[ext] = extensions[ext];
           }
         }
@@ -79,7 +79,7 @@ var P = (function(prototype, hasOwnProperty, undefined) {
       }
 
       return C;
-    }
+    };
 
     // set the constructor property, for convenience
     proto.constructor = C;
