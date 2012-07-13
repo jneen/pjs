@@ -47,6 +47,8 @@ var P = (function(prototype, ownProperty, undefined) {
     // note that this resolves to `new Object`
     // if the superclass isn't given
     var proto = C[prototype] = new _superclass();
+
+    // other variables, as a minifier optimization
     var _super = _superclass[prototype];
     var extensions;
 
@@ -81,7 +83,7 @@ var P = (function(prototype, ownProperty, undefined) {
       return C;
     };
 
-    // set the constructor property, for convenience
+    // set the constructor property on the prototype, for convenience
     proto.constructor = C;
 
     return mixin(definition);
