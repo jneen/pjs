@@ -52,7 +52,10 @@ var P = (function(prototype, ownProperty, undefined) {
     var _super = _superclass[prototype];
     var extensions;
 
-    var mixin = C.mixin = function(def) {
+    // set the constructor property on the prototype, for convenience
+    proto.constructor = C;
+
+    return (C.mixin = function(def) {
       extensions = {};
 
       if (isFunction(def)) {
@@ -81,12 +84,7 @@ var P = (function(prototype, ownProperty, undefined) {
       }
 
       return C;
-    };
-
-    // set the constructor property on the prototype, for convenience
-    proto.constructor = C;
-
-    return mixin(definition);
+    })(definition);
   }
 
   // ship it
