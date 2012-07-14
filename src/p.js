@@ -46,17 +46,21 @@ var P = (function(prototype, ownProperty, undefined) {
     // set up the prototype of the new class
     // note that this resolves to `new Object`
     // if the superclass isn't given
-    var proto = C[prototype] = new _superclass();
-
-    // other variables, as a minifier optimization
-    var _super = _superclass[prototype];
-    var extensions;
-
-    // set the constructor property on the prototype, for convenience
-    proto.constructor = C;
+    //
+    // Also note that the prototype isn't actually shared - `mixin`
+    // will extend the prototype chain each time it's called, including
+    // just below.
+    C[prototype] = _superclass[prototype];
 
     return (C.mixin = function(def) {
       extensions = {};
+
+      var _super = C[prototype];
+      var proto = C[prototype] = new C();
+      var extensions;
+
+      // set the constructor property on the prototype, for convenience
+      proto.constructor = C;
 
       if (isFunction(def)) {
         // call the defining function with all the arguments you need

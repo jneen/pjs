@@ -186,5 +186,19 @@ describe('P', function() {
       C.mixin(mixin);
       assert.equal(count, 2);
     });
+
+    it('suppports _super', function() {
+      var mixin1 = function(proto) {
+        proto.foo = function() { return 1 };
+      }
+
+      var mixin2 = function(proto, _super) {
+        proto.foo = function() { return _super.foo.call(this) + 1 };
+      }
+
+      C.mixin(mixin1).mixin(mixin2);
+
+      assert.equal(C().foo(), 2);
+    });
   });
 });
