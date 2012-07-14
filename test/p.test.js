@@ -81,6 +81,7 @@ describe('P', function() {
         throw MyError('o noes');
       } catch(e) {
         assert.ok(e instanceof MyError);
+        assert.ok(e instanceof Error);
       }
     });
 
