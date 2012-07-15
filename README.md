@@ -102,12 +102,6 @@ P(MySuperclass, function(proto, super, class, superclass) {
 // but you lose the niceness of super and private methods.
 P({ init: function(a) { this.thing = a } });
 
-// you can use `.mixin` to reopen a class.  This has the same behavior
-// as the regular definitions.
-MyClass = P({ a: 1 });
-MyClass.mixin(function(proto) { proto.a = 2 });
-MyClass().a // => 2
-
 MyClass = P(function(p) { p.init = function(a, b) { console.log("init!", a, b) }; });
 // instantiate objects by calling the class
 MyClass(1, 2) // => init!, 1, 2
@@ -121,6 +115,23 @@ MyClass.apply(null, argsList) // init!, 1, 2
 
 // or do it the sneaky way
 new MyClass(argsList) // init!, 1, 2
+
+
+// you can use `.open` to reopen a class.  This has the same behavior
+// as the regular definitions.
+// note that _super will still be set to the class's prototype
+MyClass = P({ a: 1 });
+var myInst = MyClass();
+MyClass.open(function(proto) { proto.a = 2 });
+myInst.a // => 2
+MyClass.open(function(proto, _super) { /* _super is Object.prototype here */ });
+
+// you can use `.mixin` to extend the prototype chain.  This is similar
+// to .open, but _super works normally, and it doesn't affect existing instances.
+MyClass.mixin({ a: 3 });
+myInst.a // => 2
+MyClass.mixin(function(proto, _super) { proto.foo = function() { return _super.a }; });
+MyClass().foo() // => 3
 ```
 
 ## what is all this Makefile stuff about
