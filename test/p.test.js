@@ -158,10 +158,22 @@ describe('P', function() {
 
   });
 
+  describe('open', function() {
+    var C = P();
+
+    it('reopens the class, affecting existing instances', function() {
+      C.open({ a: 1 });
+      var inst = C();
+      C.open({ a: 2 });
+
+      assert.equal(inst.a, 2);
+    });
+  });
+
   describe('mixins', function() {
     var C = P();
     var count = 0;
-    it('reopens classes', function() {
+    it('extends the prototype', function() {
       var mixin1 = function(proto) {
         proto.foo = 1;
       };
@@ -176,6 +188,14 @@ describe('P', function() {
       // chainable!
       C.mixin(mixin1).mixin(mixin2);
       assert.equal(C().foo, 2);
+    });
+
+    it('extends, and does not affect existing instances', function() {
+      C.mixin({ a: 1 });
+      var inst = C();
+      C.mixin({ a: 2 });
+
+      assert.equal(inst.a, 1);
     });
 
     it('calls the mixin multiple times', function() {
