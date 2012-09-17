@@ -10,8 +10,7 @@
   "main": "index.js",
   "devDependencies": {
     "mocha": "*",
-    "uglify-js": "*",
-    "jshint": "*"
+    "uglify-js": "*"
   },
   "scripts": {
     "install": "make commonjs",
