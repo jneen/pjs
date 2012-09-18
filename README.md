@@ -136,7 +136,18 @@ MyClass().foo() // => 3
 
 ## what is all this Makefile stuff about
 
-It's super useful!  Here are the things you can build:
+It's super useful! In addition to `make`, Pjs uses some build tools written on
+[Node][]. With the [Node Package Manager][npm] that comes with recent versions
+of it, just run
+
+    npm install
+
+from the root directory of the repo and `make` will start working.
+
+[Node]: http://nodejs.org/#download
+[npm]: http://npmjs.org
+
+Here are the things you can build:
 
 - `make minify`
     generates `build/p.min.js`
@@ -150,6 +161,5 @@ It's super useful!  Here are the things you can build:
 - `make test`
     runs the test suite using the commonjs version.  Requires `mocha`.
 
-(*) uglifyjs is required for some of these.
-
-(**) I tested these tasks with GNU make.  If someone could verify this all works with BSD make (like on a Mac) that'd be awesome.
+(I tested these tasks with GNU make.  If someone could verify this all works
+with BSD make (like on a Mac) that'd be awesome.)

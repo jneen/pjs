@@ -8,7 +8,7 @@ SRC = $(SRC_DIR)/p.js
 all: minify commonjs amd report
 
 # -*- minification -*- #
-UGLIFYJS ?= uglifyjs
+UGLIFYJS ?= ./node_modules/.bin/uglifyjs
 UGLIFY_OPTS += --lift-vars --unsafe
 UGLY = $(BUILD_DIR)/p.min.js
 
@@ -38,16 +38,11 @@ report: $(UGLY)
 	wc -c $(UGLY)
 
 # -*- testing -*- #
-MOCHA ?= mocha
-JSHINT ?= jshint
+MOCHA ?= ./node_modules/.bin/mocha
 TESTS = ./test/*.test.js
 .PHONY: test
-test: jshint $(COMMONJS)
+test: $(COMMONJS)
 	$(MOCHA) $(TESTS)
-
-.PHONY: jshint
-jshint:
-	# $(JSHINT) $(SRC)
 
 # -*- packaging -*- #
 
