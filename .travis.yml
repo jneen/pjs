@@ -1,3 +1,4 @@
+# see http://travis-ci.org/jayferd/pjs
 language: node_js
 node_js:
   - 0.6
