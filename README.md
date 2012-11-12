@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/jayferd/pjs.png)](http://travis-ci.org/jayferd/pjs)
+
 # P.js
 
 P.js is a lightweight layer over javascript's built-in inheritance system that keeps all the good stuff and hides all the crap.
