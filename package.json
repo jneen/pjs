@@ -6,7 +6,7 @@
   "author": "Jay Adkisson <jjmadkisson at gmail dot com>",
   "repository": "git://github.com/jayferd/pjs",
 
-  "files": ["index.js", "src", "test", "Makefile", "package.json"],
+  "files": ["index.js", "src", "test", "Makefile", "package.json", "README.md"],
   "main": "index.js",
   "devDependencies": {
     "mocha": "*",
