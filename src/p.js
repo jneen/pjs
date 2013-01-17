@@ -46,7 +46,7 @@ var P = (function(prototype, ownProperty, undefined) {
     // set up the prototype of the new class
     // note that this resolves to `new Object`
     // if the superclass isn't given
-    var proto = C[prototype] = C.fn = new _superclass();
+    var proto = C[prototype] = new _superclass();
 
     // other variables, as a minifier optimization
     var _super = _superclass[prototype];
