@@ -55,6 +55,10 @@ describe('P', function() {
     it('is not called when the Bare class is called with `new`', function() {
       assert.ok(!(new MyClass.Bare).initCalled);
     });
+
+    it('maintains instanceof when instantiated with Bare', function() {
+      assert.ok(new MyClass.Bare instanceof MyClass);
+    });
   });
 
   describe('inheritance', function() {
