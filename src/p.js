@@ -37,16 +37,20 @@ var P = (function(prototype, ownProperty, undefined) {
     //  TODO: the Chrome inspector shows all created objects as `C` rather than `Object`.
     //        Setting the .name property seems to have no effect.  Is there a way to override
     //        this behavior?
-    function C(args) {
-      var self = this;
-      if (!(self instanceof C)) return new C(arguments);
-      if (args && isFunction(self.init)) self.init.apply(self, args);
+    function C() {
+      var self = new alloc;
+      if (isFunction(self.init)) self.init.apply(self, arguments);
+      return self;
     }
+    function alloc(){}
+    C.alloc = alloc;
+
+    var _superclass_alloc = _superclass.alloc || _superclass;
 
     // set up the prototype of the new class
     // note that this resolves to `new Object`
     // if the superclass isn't given
-    var proto = C[prototype] = new _superclass();
+    var proto = alloc[prototype] = C[prototype] = new _superclass_alloc();
 
     // other variables, as a minifier optimization
     var _super = _superclass[prototype];
@@ -56,7 +60,7 @@ var P = (function(prototype, ownProperty, undefined) {
     proto.constructor = C;
 
     C.mixin = function(def) {
-      C[prototype] = P(C, def)[prototype];
+      alloc[prototype] = C[prototype] = P(C, def)[prototype];
       return C;
     }
 

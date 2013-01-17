@@ -20,6 +20,15 @@ describe('P', function() {
       assert.ok(new MyClass instanceof MyClass);
       assert.ok(MyClass() instanceof MyClass);
     });
+
+    it('respects `.constructor`', function() {
+      var o = MyClass();
+      assert.ok(o.constructor === MyClass);
+
+      var o2 = o.constructor();
+      assert.ok(o2 instanceof MyClass);
+      assert.ok(o2.foo === 1);
+    });
   });
 
   describe('init', function() {
@@ -38,15 +47,13 @@ describe('P', function() {
       assert.equal(2, MyClass.apply(null, [1, 2, 3]).initArgs[1]);
     });
 
-    it('is not called when the new keyword is given', function() {
-      assert.ok(!(new MyClass).initCalled);
+    it('is called when the class is called with `new`', function() {
+      assert.ok((new MyClass).initCalled);
+      assert.equal(3, (new MyClass(1,2,3)).initArgs[2]);
     });
 
-    it('is called when an argument is passed with `new`', function() {
-      var obj = new MyClass([1, 2]);
-      assert.ok(obj.initCalled);
-      assert.equal(1, obj.initArgs[0]);
-      assert.equal(2, obj.initArgs[1]);
+    it('is not called when the alloc property is called with `new`', function() {
+      assert.ok(!(new MyClass.alloc).initCalled);
     });
   });
 
