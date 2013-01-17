@@ -16,7 +16,7 @@ describe('P', function() {
       assert.equal(1, MyClass.prototype.foo);
     });
 
-    it('respects instanceof', function() {
+    it('respects `instanceof`', function() {
       assert.ok(new MyClass instanceof MyClass);
       assert.ok(MyClass() instanceof MyClass);
     });
