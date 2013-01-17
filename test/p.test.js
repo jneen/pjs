@@ -52,8 +52,8 @@ describe('P', function() {
       assert.equal(3, (new MyClass(1,2,3)).initArgs[2]);
     });
 
-    it('is not called when the alloc property is called with `new`', function() {
-      assert.ok(!(new MyClass.alloc).initCalled);
+    it('is not called when the Bare class is called with `new`', function() {
+      assert.ok(!(new MyClass.Bare).initCalled);
     });
   });
 

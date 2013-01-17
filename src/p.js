@@ -38,19 +38,19 @@ var P = (function(prototype, ownProperty, undefined) {
     //        Setting the .name property seems to have no effect.  Is there a way to override
     //        this behavior?
     function C() {
-      var self = new alloc;
+      var self = new Bare;
       if (isFunction(self.init)) self.init.apply(self, arguments);
       return self;
     }
-    function alloc(){}
-    C.alloc = alloc;
 
+    function Bare(){}
+    C.Bare = Bare;
 
     // set up the prototype of the new class
     // note that this resolves to `new Object`
     // if the superclass isn't given
-    var proto = alloc[prototype] = C[prototype]
-      = new (_superclass.alloc || _superclass);
+    var proto = Bare[prototype] = C[prototype]
+      = new (_superclass.Bare || _superclass);
 
     // other variables, as a minifier optimization
     var _super = _superclass[prototype];
@@ -60,7 +60,7 @@ var P = (function(prototype, ownProperty, undefined) {
     proto.constructor = C;
 
     C.mixin = function(def) {
-      alloc[prototype] = C[prototype] = P(C, def)[prototype];
+      Bare[prototype] = C[prototype] = P(C, def)[prototype];
       return C;
     }
 
