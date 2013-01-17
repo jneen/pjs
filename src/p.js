@@ -45,12 +45,12 @@ var P = (function(prototype, ownProperty, undefined) {
     function alloc(){}
     C.alloc = alloc;
 
-    var _superclass_alloc = _superclass.alloc || _superclass;
 
     // set up the prototype of the new class
     // note that this resolves to `new Object`
     // if the superclass isn't given
-    var proto = alloc[prototype] = C[prototype] = new _superclass_alloc();
+    var proto = alloc[prototype] = C[prototype]
+      = new (_superclass.alloc || _superclass);
 
     // other variables, as a minifier optimization
     var _super = _superclass[prototype];
