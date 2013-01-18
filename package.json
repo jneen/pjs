@@ -1,6 +1,6 @@
 {
   "name": "pjs",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "description": "A lightweight class system.  It's just prototypes!",
   "keywords": ["class", "pjs", "P", "inheritance", "super"],
   "author": "Jay Adkisson <jjmadkisson at gmail dot com>",
