@@ -137,6 +137,16 @@ MyClass.mixin(function(proto, _super) { proto.foo = function() { return _super.a
 MyClass().foo() // => 3
 ```
 
+## how do i use pjs in node.js?
+
+Assuming you have it installed (via `npm install pjs`), you can import it with
+
+``` js
+var P = require('pjs').P;
+```
+
+and go about your business.
+
 ## what is all this Makefile stuff about
 
 It's super useful! In addition to `make`, Pjs uses some build tools written on
