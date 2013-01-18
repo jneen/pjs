@@ -108,16 +108,17 @@ MyClass = P(function(p) { p.init = function(a, b) { console.log("init!", a, b) }
 // instantiate objects by calling the class
 MyClass(1, 2) // => init!, 1, 2
 
-// allocate blank objects with `new`
-new MyClass // nothing logged
+// `new` is optional, not really recommended.
+new MyClass(1, 2) // => init!, 1, 2
+
+// allocate uninitialized objects with .Bare
+// (much like Ruby's Class#allocate)
+new MyClass.Bare // nothing logged
+new MyClass.Bare instanceof MyClass // => true
 
 // to initialize with varargs, use `apply` like any other function.
 var argsList = [1, 2];
 MyClass.apply(null, argsList) // init!, 1, 2
-
-// or do it the sneaky way
-new MyClass(argsList) // init!, 1, 2
-
 
 // you can use `.open` to reopen a class.  This has the same behavior
 // as the regular definitions.
