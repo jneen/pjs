@@ -84,6 +84,20 @@ describe('P', function() {
     });
   });
 
+  describe('inheriting non-pjs classes', function() {
+    function IdiomaticClass() {
+      this.initialized = true;
+    }
+
+    IdiomaticClass.prototype.initialized = false;
+
+    it('inherits without calling the constructor', function() {
+      var MySubclass = P(IdiomaticClass, {});
+      assert.equal(false, MySubclass.prototype.initialized);
+      assert.equal(true, MySubclass().initialized);
+    });
+  });
+
   describe('inheriting builtins', function() {
     describe('Error', function() {
       var MyError = P(Error, {});
