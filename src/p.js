@@ -32,7 +32,6 @@ var P = (function(prototype, ownProperty, undefined) {
     // same as C, so that instances of C.Bare are also instances of C.
     // New objects can be allocated without initialization by calling
     // `new MyClass.Bare`.
-
     function Bare() {}
     C.Bare = Bare;
 
