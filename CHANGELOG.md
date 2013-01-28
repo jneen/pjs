@@ -1,3 +1,7 @@
+## version 3.0.1: 2013-01-28
+
+  * Fix #13: don't call the constructor when making the new prototype.
+
 ## version 3.0.0: 2013-01-18
 
   * Introduce `MyClass.Bare` as a way of allocating uninitialized
