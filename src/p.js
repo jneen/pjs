@@ -3,8 +3,9 @@ var P = (function(prototype, ownProperty, undefined) {
   function isObject(o) { return typeof o === 'object'; }
   function isFunction(f) { return typeof f === 'function'; }
 
-  // a function that gets reused to make uninitialized objects
-  function BareConstructor() {}
+  // used to extend the prototypes of superclasses (which might not
+  // have `.Bare`s)
+  function SuperclassBare() {}
 
   function P(_superclass /* = Object */, definition) {
     // handle the case where no superclass is given
@@ -36,8 +37,8 @@ var P = (function(prototype, ownProperty, undefined) {
     C.Bare = Bare;
 
     // Set up the prototype of the new class.
-    var _super = BareConstructor[prototype] = _superclass[prototype];
-    var proto = Bare[prototype] = C[prototype] = new BareConstructor;
+    var _super = SuperclassBare[prototype] = _superclass[prototype];
+    var proto = Bare[prototype] = C[prototype] = new SuperclassBare;
 
     // other variables, as a minifier optimization
     var extensions;
