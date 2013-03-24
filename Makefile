@@ -9,14 +9,14 @@ all: minify commonjs amd report
 
 # -*- minification -*- #
 UGLIFYJS ?= ./node_modules/.bin/uglifyjs
-UGLIFY_OPTS += --lift-vars --unsafe
+UGLIFY_OPTS += -m -c hoist_vars=true,unsafe=true
 UGLY = $(BUILD_DIR)/p.min.js
 
 $(UGLY): $(SRC)
-	$(UGLIFYJS) $(UGLIFY_OPTS) $< > $@
+	$(UGLIFYJS) $(UGLIFY_OPTS) $< -o $@
 
 %.min.js: %.js
-	$(UGLIFYJS) $(UGLIFY_OPTS) $< > $@
+	$(UGLIFYJS) $(UGLIFY_OPTS) $< -o $@
 
 minify: $(UGLY)
 

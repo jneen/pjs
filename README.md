@@ -43,7 +43,7 @@ tom.move()
 
 ## how is pjs different from X
 
-Most class systems for JS let you define classes by passing an object.  P.js lets you pass a function instead, which allows you to closure private methods and macros.  It's also 546 bytes minified (see `make report`).
+Most class systems for JS let you define classes by passing an object.  P.js lets you pass a function instead, which allows you to closure private methods and macros.  It's also 548 bytes minified (see `make report`).
 
 ### why doesn't pjs suck?
 
@@ -173,6 +173,3 @@ Here are the things you can build:
 
 - `make test`
     runs the test suite using the commonjs version.  Requires `mocha`.
-
-(I tested these tasks with GNU make.  If someone could verify this all works
-with BSD make (like on a Mac) that'd be awesome.)
