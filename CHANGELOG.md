@@ -1,4 +1,10 @@
+## version 3.0.2: 2013-04-04
+
+  * Build process fixes (thanks @danro!)
+  * rename BareConstructor to SuperclassBare (@laughinghan)
+
 ## version 3.0.1: 2013-01-28
+(bad release)
 
   * Fix #13: don't call the constructor when making the new prototype.
 
