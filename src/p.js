@@ -38,7 +38,7 @@ var P = (function(prototype, ownProperty, undefined) {
 
     // Set up the prototype of the new class.
     var _super = SuperclassBare[prototype] = _superclass[prototype];
-    var proto = Bare[prototype] = C[prototype] = new SuperclassBare;
+    var proto = Bare[prototype] = C[prototype] = C.p = new SuperclassBare;
 
     // other variables, as a minifier optimization
     var extensions;
