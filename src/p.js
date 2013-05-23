@@ -7,7 +7,7 @@ var P = (function(prototype, ownProperty, undefined) {
   // have `.Bare`s)
   function SuperclassBare() {}
 
-  function P(_superclass /* = Object */, definition) {
+  return function P(_superclass /* = Object */, definition) {
     // handle the case where no superclass is given
     if (definition === undefined) {
       definition = _superclass;
@@ -83,9 +83,6 @@ var P = (function(prototype, ownProperty, undefined) {
       return C;
     })(definition);
   }
-
-  // ship it
-  return P;
 
   // as a minifier optimization, we've closured in a few helper functions
   // and the string 'prototype' (C[p] is much shorter than C.prototype)
