@@ -1,3 +1,8 @@
+## version 3.1.0: 2013-06-13
+
+  * Add .p as an alias for .prototype
+  * slight minifier optimization
+
 ## version 3.0.2: 2013-04-04
 
   * Build process fixes (thanks @danro!)
