@@ -195,10 +195,10 @@ describe('P', function() {
     });
   });
 
-  describe('mixins', function() {
+  describe('extend', function() {
     var C = P();
     var count = 0;
-    it('extends the prototype', function() {
+    it('extends the class', function() {
       var mixin1 = function(proto) {
         proto.foo = 1;
       };
@@ -207,30 +207,10 @@ describe('P', function() {
 
       assert.equal(C().foo, undefined);
 
-      C.mixin(mixin1);
-      assert.equal(C().foo, 1);
+      assert.equal(C.extend(mixin1)().foo, 1);
 
       // chainable!
-      C.mixin(mixin1).mixin(mixin2);
-      assert.equal(C().foo, 2);
-    });
-
-    it('extends, and does not affect existing instances', function() {
-      C.mixin({ a: 1 });
-      var inst = C();
-      C.mixin({ a: 2 });
-
-      assert.equal(inst.a, 1);
-    });
-
-    it('calls the mixin multiple times', function() {
-      count = 0;
-      var mixin = function() { count += 1 };
-
-      C.mixin(mixin);
-      assert.equal(count, 1);
-      C.mixin(mixin);
-      assert.equal(count, 2);
+      assert.equal(C.extend(mixin1).extend(mixin2)().foo, 2);
     });
 
     it('suppports _super', function() {
@@ -242,9 +222,7 @@ describe('P', function() {
         proto.foo = function() { return _super.foo.call(this) + 1 };
       }
 
-      C.mixin(mixin1).mixin(mixin2);
-
-      assert.equal(C().foo(), 2);
+      assert.equal(C.extend(mixin1).extend(mixin2)().foo(), 2);
     });
   });
 });

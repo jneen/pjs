@@ -47,10 +47,7 @@ var P = (function(prototype, ownProperty, undefined) {
     // set the constructor property on the prototype, for convenience
     proto.constructor = C;
 
-    C.mixin = function(def) {
-      Bare[prototype] = C[prototype] = P(C, def)[prototype];
-      return C;
-    }
+    C.extend = function(def) { return P(C, def); }
 
     return (C.open = function(def) {
       extensions = {};
