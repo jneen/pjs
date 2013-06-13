@@ -1,3 +1,7 @@
+## version 4.0.0: 2013-06-13
+
+  * remove .mixin, and add .extend (see #18)
+
 ## version 3.1.0: 2013-06-13
 
   * Add .p as an alias for .prototype
