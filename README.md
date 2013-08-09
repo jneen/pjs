@@ -129,12 +129,9 @@ MyClass.open(function(proto) { proto.a = 2 });
 myInst.a // => 2
 MyClass.open(function(proto, _super) { /* _super is Object.prototype here */ });
 
-// you can use `.mixin` to extend the prototype chain.  This is similar
-// to .open, but _super works normally, and it doesn't affect existing instances.
-MyClass.mixin({ a: 3 });
-myInst.a // => 2
-MyClass.mixin(function(proto, _super) { proto.foo = function() { return _super.a }; });
-MyClass().foo() // => 3
+// you can also use `.extend(definition)` to create new subclasses.  This is equivalent
+// to calling P with two arguments.
+var Subclass = MyClass.extend({ a: 3 });
 ```
 
 ## how do i use pjs in node.js?
