@@ -1,6 +1,5 @@
 var P = (function(prototype, ownProperty, undefined) {
   // helper functions that also help minification
-  function isObject(o) { return typeof o === 'object'; }
   function isFunction(f) { return typeof f === 'function'; }
 
   // used to extend the prototypes of superclasses (which might not
@@ -53,7 +52,7 @@ var P = (function(prototype, ownProperty, undefined) {
       }
 
       // ...and extend it
-      if (isObject(def)) {
+      if (typeof def === 'object') {
         for (var key in def) {
           if (ownProperty.call(def, key)) {
             proto[key] = def[key];
