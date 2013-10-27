@@ -105,8 +105,12 @@ P(MySuperclass, function(proto, super, class, superclass) {
 P({ init: function(a) { this.thing = a } });
 
 MyClass = P(function(p) { p.init = function(a, b) { console.log("init!", a, b) }; });
-// instantiate objects by calling the class
+// instantiate objects by calling the class as a function
 MyClass(1, 2) // => init!, 1, 2
+
+// to initialize with varargs, use `apply` like any other function.
+var argsList = [1, 2];
+MyClass.apply(null, argsList) // init!, 1, 2
 
 // `new` is optional, not really recommended.
 new MyClass(1, 2) // => init!, 1, 2
@@ -115,10 +119,6 @@ new MyClass(1, 2) // => init!, 1, 2
 // (much like Ruby's Class#allocate)
 new MyClass.Bare // nothing logged
 new MyClass.Bare instanceof MyClass // => true
-
-// to initialize with varargs, use `apply` like any other function.
-var argsList = [1, 2];
-MyClass.apply(null, argsList) // init!, 1, 2
 
 // you can use `.open` to reopen a class.  This has the same behavior
 // as the regular definitions.
