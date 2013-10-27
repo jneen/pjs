@@ -25,9 +25,13 @@ describe('P', function() {
       var o = MyClass();
       assert.ok(o.constructor === MyClass);
 
-      var o2 = o.constructor();
+      var o2 = new o.constructor();
       assert.ok(o2 instanceof MyClass);
       assert.ok(o2.foo === 1);
+
+      var o3 = o.constructor.call(null);
+      assert.ok(o3 instanceof MyClass);
+      assert.ok(o3.foo === 1);
     });
   });
 
