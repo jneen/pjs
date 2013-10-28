@@ -102,6 +102,31 @@ describe('P', function() {
     });
   });
 
+  // for coffeescript or es6 subclassing of pjs classes
+  describe('idiomatic subclassing of Pjs classes', function() {
+    var MyClass = P({
+      init: function() { this.initCalled = true; },
+      initCalled: false,
+      foo: 3
+    });
+
+    function IdiomaticSubclass() {
+      MyClass.call(this);
+    }
+
+    // coffeescript does something slightly different here with __extends,
+    // but it's the same behavior
+    IdiomaticSubclass.prototype = Object.create(MyClass.prototype);
+
+    it('inherits properly', function() {
+      var obj = new IdiomaticSubclass();
+      assert.ok(obj instanceof IdiomaticSubclass);
+      assert.ok(obj instanceof MyClass);
+      assert.equal(true, obj.initCalled);
+      assert.equal(3, obj.foo)
+    });
+  });
+
   describe('inheriting builtins', function() {
     describe('Error', function() {
       var MyError = P(Error, {});
