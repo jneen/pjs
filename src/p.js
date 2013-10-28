@@ -57,11 +57,9 @@ var P = (function(prototype, ownProperty, undefined) {
         }
       }
 
-      // if there's no init, we assume we're inheriting a non-pjs class, so
-      // we default to applying the superclass's constructor.
-      if (typeof proto.init !== 'function') {
-        proto.init = _superclass;
-      }
+      // if no init, assume we're inheriting from a non-Pjs class, so
+      // default to using the superclass constructor.
+      proto.init = proto.init || _superclass;
 
       return C;
     })(definition);
