@@ -46,7 +46,6 @@ test: $(COMMONJS)
 
 # -*- packaging -*- #
 
-# XXX this is kind of awful, but hey, it keeps the version info in the right place.
 VERSION = $(shell node -e 'console.log(require("./package.json").version)')
 PACKAGE = pjs-$(VERSION).tgz
 CLEAN += pjs-*.tgz
