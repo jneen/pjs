@@ -16,15 +16,15 @@ var P = (function(prototype, ownProperty, undefined) {
 
     // C is the class to be returned.
     //
-    // It delegates to instantiating an instance of `Bare`, so that it
-    // will always return a new instance regardless of the calling
-    // context.
+    // When called, creates and initializes an instance of C, unless
+    // `this` is already an instance of C, then just initializes `this`;
+    // either way, returns the instance of C that was initialized.
     //
     //  TODO: the Chrome inspector shows all created objects as `C`
     //        rather than `Object`.  Setting the .name property seems to
     //        have no effect.  Is there a way to override this behavior?
     function C() {
-      var self = new Bare;
+      var self = this instanceof C ? this : new Bare;
       if (isFunction(self.init)) self.init.apply(self, arguments);
       return self;
     }

@@ -43,7 +43,7 @@ tom.move()
 
 ## how is pjs different from X
 
-Most class systems for JS let you define classes by passing an object.  P.js lets you pass a function instead, which allows you to closure private methods and macros.  It's also 548 bytes minified (see `make report`).
+Most class systems for JS let you define classes by passing an object.  P.js lets you pass a function instead, which allows you to closure private methods and macros.  It's also 560 bytes minified (see `make report`).
 
 ### why doesn't pjs suck?
 
@@ -105,20 +105,34 @@ P(MySuperclass, function(proto, super, class, superclass) {
 P({ init: function(a) { this.thing = a } });
 
 MyClass = P(function(p) { p.init = function(a, b) { console.log("init!", a, b) }; });
-// instantiate objects by calling the class
+// instantiate objects by calling the class as a function
 MyClass(1, 2) // => init!, 1, 2
 
+// to initialize with varargs, use `apply` like any other function.
+var argsList = [1, 2];
+MyClass.apply(null, argsList) // init!, 1, 2
+
+// you can use it like an idiomatic class:
 // `new` is optional, not really recommended.
 new MyClass(1, 2) // => init!, 1, 2
+// non-pjs idiomatic subclass
+function Subclass(a) { MyClass.call(this, a, a); }
+new Subclass(3) // => init!, 3, 3
+new Subclass(3) instanceof MyClass // => true
+
+// `new` may be used to "force" instantiation when ambiguous,
+// for example in a factory method that creates new instances
+MyClass.prototype.clone = function(a, b) {
+  return new this.constructor(a, b);
+};
+// because without `new`, `this.constructor(a, b)` is equivalent to
+// `MyClass.call(this, a, b)` which as we saw in the previous example
+// mutates `this` rather than creating new instances
 
 // allocate uninitialized objects with .Bare
 // (much like Ruby's Class#allocate)
 new MyClass.Bare // nothing logged
 new MyClass.Bare instanceof MyClass // => true
-
-// to initialize with varargs, use `apply` like any other function.
-var argsList = [1, 2];
-MyClass.apply(null, argsList) // init!, 1, 2
 
 // you can use `.open` to reopen a class.  This has the same behavior
 // as the regular definitions.
