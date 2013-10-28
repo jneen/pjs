@@ -1,6 +1,5 @@
 var P = (function(prototype, ownProperty, undefined) {
   // helper functions that also help minification
-  function isObject(o) { return typeof o === 'object'; }
   function isFunction(f) { return typeof f === 'function'; }
 
   // used to extend the prototypes of superclasses (which might not
@@ -40,33 +39,23 @@ var P = (function(prototype, ownProperty, undefined) {
     var _super = SuperclassBare[prototype] = _superclass[prototype];
     var proto = Bare[prototype] = C[prototype] = C.p = new SuperclassBare;
 
-    // other variables, as a minifier optimization
-    var extensions;
-
-
     // set the constructor property on the prototype, for convenience
     proto.constructor = C;
 
     C.extend = function(def) { return P(C, def); }
 
     return (C.open = function(def) {
-      extensions = {};
-
       if (isFunction(def)) {
         // call the defining function with all the arguments you need
         // extensions captures the return value.
-        extensions = def.call(C, proto, _super, C, _superclass);
-      }
-      else if (isObject(def)) {
-        // if you passed an object instead, we'll take it
-        extensions = def;
+        def = def.call(C, proto, _super, C, _superclass);
       }
 
       // ...and extend it
-      if (isObject(extensions)) {
-        for (var ext in extensions) {
-          if (ownProperty.call(extensions, ext)) {
-            proto[ext] = extensions[ext];
+      if (typeof def === 'object') {
+        for (var key in def) {
+          if (ownProperty.call(def, key)) {
+            proto[key] = def[key];
           }
         }
       }
