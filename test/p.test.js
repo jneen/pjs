@@ -116,7 +116,7 @@ describe('P', function() {
 
     // coffeescript does something slightly different here with __extends,
     // but it's the same behavior
-    IdiomaticSubclass.prototype = Object.create(MyClass.prototype);
+    IdiomaticSubclass.prototype = new MyClass.Bare;
 
     it('inherits properly', function() {
       var obj = new IdiomaticSubclass();
