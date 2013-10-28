@@ -242,7 +242,7 @@ describe('P', function() {
       assert.equal(C.extend(mixin1).extend(mixin2)().foo, 2);
     });
 
-    it('suppports _super', function() {
+    it('supports _super', function() {
       var mixin1 = function(proto) {
         proto.foo = function() { return 1 };
       }
