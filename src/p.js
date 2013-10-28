@@ -1,7 +1,4 @@
 var P = (function(prototype, ownProperty, undefined) {
-  // helper functions that also help minification
-  function isFunction(f) { return typeof f === 'function'; }
-
   // used to extend the prototypes of superclasses (which might not
   // have `.Bare`s)
   function SuperclassBare() {}
@@ -24,7 +21,7 @@ var P = (function(prototype, ownProperty, undefined) {
     //        have no effect.  Is there a way to override this behavior?
     function C() {
       var self = this instanceof C ? this : new Bare;
-      if (isFunction(self.init)) self.init.apply(self, arguments);
+      self.init.apply(self, arguments);
       return self;
     }
 
@@ -45,7 +42,7 @@ var P = (function(prototype, ownProperty, undefined) {
     C.extend = function(def) { return P(C, def); }
 
     return (C.open = function(def) {
-      if (isFunction(def)) {
+      if (typeof def === 'function') {
         // call the defining function with all the arguments you need
         // extensions captures the return value.
         def = def.call(C, proto, _super, C, _superclass);
@@ -62,7 +59,7 @@ var P = (function(prototype, ownProperty, undefined) {
 
       // if there's no init, we assume we're inheriting a non-pjs class, so
       // we default to applying the superclass's constructor.
-      if (!isFunction(proto.init)) {
+      if (typeof proto.init !== 'function') {
         proto.init = _superclass;
       }
 
