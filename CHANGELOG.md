@@ -1,3 +1,9 @@
+## version 5.0.0: 2013-10-27
+
+  * Allow idiomatic (coffeescript or es6) subclassing of pjs classes, at the
+    cost of subtly breaking back-compat with `this.constructor(...)`.  To fix
+    this, just put a `new` in front of the call.
+
 ## version 4.0.0: 2013-06-13
 
   * remove .mixin, and add .extend (see #18)
