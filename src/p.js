@@ -1,8 +1,4 @@
 var P = (function(prototype, ownProperty, undefined) {
-  // used to extend the prototypes of superclasses (which might not
-  // have `.Bare`s)
-  function SuperclassBare() {}
-
   return function P(_superclass /* = Object */, definition) {
     // handle the case where no superclass is given
     if (definition === undefined) {
@@ -33,8 +29,9 @@ var P = (function(prototype, ownProperty, undefined) {
     C.Bare = Bare;
 
     // Set up the prototype of the new class.
-    var _super = SuperclassBare[prototype] = _superclass[prototype];
-    var proto = Bare[prototype] = C[prototype] = C.p = new SuperclassBare;
+    // note that we set and re-set Bare.prototype.
+    var _super = Bare[prototype] = _superclass[prototype];
+    var proto = Bare[prototype] = C[prototype] = C.p = new Bare;
 
     // set the constructor property on the prototype, for convenience
     proto.constructor = C;
