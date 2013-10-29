@@ -33,6 +33,10 @@ var P = (function(prototype, ownProperty, undefined) {
     var _super = Bare[prototype] = _superclass[prototype];
     var proto = Bare[prototype] = C[prototype] = C.p = new Bare;
 
+    // pre-declaring the iteration variable for the loop below to save
+    // a `var` keyword
+    var key;
+
     // set the constructor property on the prototype, for convenience
     proto.constructor = C;
 
@@ -47,7 +51,7 @@ var P = (function(prototype, ownProperty, undefined) {
 
       // ...and extend it
       if (typeof def === 'object') {
-        for (var key in def) {
+        for (key in def) {
           if (ownProperty.call(def, key)) {
             proto[key] = def[key];
           }
