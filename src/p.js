@@ -1,4 +1,4 @@
-var P = (function(prototype, undefined) {
+var P = (function(prototype, ownProperty, undefined) {
   // used to extend the prototypes of superclasses (which might not
   // have `.Bare`s)
   function SuperclassBare() {}
@@ -51,7 +51,7 @@ var P = (function(prototype, undefined) {
       // ...and extend it
       if (typeof def === 'object') {
         for (var key in def) {
-          if (({}).hasOwnProperty.call(def, key)) {
+          if (ownProperty.call(def, key)) {
             proto[key] = def[key];
           }
         }
@@ -67,4 +67,4 @@ var P = (function(prototype, undefined) {
 
   // as a minifier optimization, we've closured in a few helper functions
   // and the string 'prototype' (C[p] is much shorter than C.prototype)
-})('prototype');
+})('prototype', ({}).hasOwnProperty);
