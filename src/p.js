@@ -35,7 +35,7 @@ var P = (function(prototype, ownProperty, undefined) {
     var proto = Bare[prototype] = C[prototype] = C.p = new Bare;
 
     // pre-declaring the iteration variable for the loop below to save
-    // a `var` keyword
+    // a `var` keyword after minification
     var key;
 
     // set the constructor property on the prototype, for convenience
