@@ -21,20 +21,21 @@ var P = (function(prototype, ownProperty, undefined) {
       return self;
     }
 
-    // C.Bare is a class with a noop constructor.  Its prototype is the
-    // same as C, so that instances of C.Bare are also instances of C.
-    // New objects can be allocated without initialization by calling
-    // `new MyClass.Bare`.
+    // C.Bare is a class with a noop constructor.  Its prototype will be
+    // the same as C, so that instances of C.Bare are instances of C.
+    // `new MyClass.Bare` then creates new instances of C without
+    // calling .init().
     function Bare() {}
     C.Bare = Bare;
 
-    // Set up the prototype of the new class.
-    // note that we set and re-set Bare.prototype.
+    // Extend the prototype chain: first use Bare to create an
+    // uninitialized instance of the superclass, then set up Bare
+    // to create instances of this class.
     var _super = Bare[prototype] = _superclass[prototype];
     var proto = Bare[prototype] = C[prototype] = C.p = new Bare;
 
     // pre-declaring the iteration variable for the loop below to save
-    // a `var` keyword
+    // a `var` keyword after minification
     var key;
 
     // set the constructor property on the prototype, for convenience
