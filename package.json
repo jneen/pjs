@@ -6,14 +6,14 @@
   "author": "Jay Adkisson <jjmadkisson at gmail dot com>",
   "repository": "git://github.com/jayferd/pjs",
 
-  "files": ["index.js", "src", "test", "Makefile", "package.json", "README.md", "CHANGELOG.md"],
+  "files": ["index.js", "src", "test", "Makefile", "package.json", "README.md", "CHANGELOG.md", "build/p.commonjs.js"],
   "main": "index.js",
   "devDependencies": {
     "mocha": "*",
     "uglify-js": "*"
   },
   "scripts": {
-    "install": "make commonjs",
+    "prepublish": "make commonjs",
     "test": "make test"
   }
 }
