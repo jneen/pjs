@@ -1,3 +1,7 @@
+## version 5.1.0: 2014-03-09
+
+  * Statically distribute build/p.commonjs.js
+
 ## version 5.0.0: 2013-10-27
 
   * Allow idiomatic (coffeescript or es6) subclassing of pjs classes, at the
