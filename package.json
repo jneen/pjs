@@ -13,7 +13,6 @@
     "uglify-js": "*"
   },
   "scripts": {
-    "prepublish": "make commonjs",
     "test": "make test"
   }
 }
