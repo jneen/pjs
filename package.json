@@ -1,10 +1,10 @@
 {
   "name": "pjs",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "A lightweight class system.  It's just prototypes!",
   "keywords": ["class", "pjs", "P", "inheritance", "super"],
-  "author": "Jay Adkisson <jjmadkisson at gmail dot com>",
-  "repository": "git://github.com/jayferd/pjs",
+  "author": "Jeanine Adkisson <jneen at jneen dot net>",
+  "repository": "git://github.com/jneen/pjs",
 
   "files": ["index.js", "src", "test", "Makefile", "package.json", "README.md", "CHANGELOG.md", "build/p.commonjs.js"],
   "main": "index.js",
