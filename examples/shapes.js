@@ -8,7 +8,7 @@ var Shape = P(function(shape) {
 
 var Rectangle = P(Shape, function(rect, shape) {
   // @override
-  rect.init = function(x, y, width, height) {
+  rect.init = function(x, y, w, h) {
     shape.init.call(this, x, y);
     this.w = w;
     this.h = h;
