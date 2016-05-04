@@ -59,7 +59,7 @@ Unlike [some][prototypejs] [other][classjs] [frameworks][joose] [out][zjs] [ther
 [classjs]: https://github.com/kilhage/class.js
 [zjs]: http://code.google.com/p/zjs/
 [joose]: http://joose.it
-[structr]: http://search.npmjs.org/#/structr
+[structr]: https://www.npmjs.com/package/structr
 
 ## what can i do with pjs?
 
