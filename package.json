@@ -5,6 +5,7 @@
   "keywords": ["class", "pjs", "P", "inheritance", "super"],
   "author": "Jeanine Adkisson <jneen at jneen dot net>",
   "repository": "git://github.com/jneen/pjs",
+  "license": "MIT",
 
   "files": ["index.js", "src", "test", "Makefile", "package.json", "README.md", "CHANGELOG.md", "build/p.commonjs.js"],
   "main": "index.js",
